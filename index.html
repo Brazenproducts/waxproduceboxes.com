@@ -335,7 +335,12 @@
     @media (max-width: 540px) {
       .specs-inner { flex-direction: column; align-items: flex-start; gap: .6rem; }
     }
-  </style>
+  
+  .photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin:0;max-height:320px;overflow:hidden}
+  .photo-strip img{width:100%;height:280px;object-fit:cover;display:block}
+  @media(max-width:640px){.photo-strip{grid-template-columns:1fr;max-height:none}.photo-strip img{height:200px}}
+
+</style>
 </head>
 <body>
 
@@ -359,6 +364,13 @@
     <div class="hero-img-overlay"></div>
   </div>
 </section>
+
+<div class="photo-strip">
+  <img src="https://brazenproducts.github.io/elipacko-assets/vegetable-crate.jpg" alt="Plastic alternative to wax produce box" loading="lazy">
+  <img src="https://brazenproducts.github.io/elipacko-assets/orange-box.jpg" alt="Oranges in produce box" loading="lazy">
+  <img src="https://brazenproducts.github.io/elipacko-assets/kiwi-box.jpg" alt="Kiwis in fresh produce box" loading="lazy">
+</div>
+
 
 <!-- SPECS BAR -->
 <div class="specs-bar" role="complementary" aria-label="Key specifications">
