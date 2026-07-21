@@ -341,34 +341,72 @@
   @media(max-width:640px){.photo-strip{grid-template-columns:1fr;max-height:none}.photo-strip img{height:200px}}
 
   
-    /* ===== MOBILE NAV FIX ===== */
+    /* ===== MOBILE NAV ===== */
     html, body { overflow-x: hidden; max-width: 100%; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: 0.2s;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: inherit;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      padding: 12px 0;
+      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: block;
+    }
     @media (max-width: 768px) {
       nav, header {
+        position: relative;
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-start !important;
         padding: 0 16px !important;
         width: 100% !important;
         box-sizing: border-box !important;
         min-height: 52px !important;
-        gap: 0 !important;
       }
-      /* Hide ALL direct children of nav/header by default */
-      nav > *, header > * {
-        display: none !important;
-      }
-      /* Then show ONLY the logo/brand element */
-      nav > *:first-child, header > *:first-child,
-      nav .nav-logo, nav .nav-brand, nav h1,
-      header .logo, header .brand, header h1,
-      header > div:first-child {
-        display: block !important;
+      /* hide desktop nav links / items */
+      .nav-links, .nav-items, .nav-menu, .nav-right { display: none !important; }
+      /* show hamburger */
+      .hamburger { display: flex !important; }
+      /* fix any overflow-causing elements */
+      nav > *, header > * { flex-shrink: 1; min-width: 0; }
+      /* logo stays visible */
+      .nav-logo, .nav-brand, .logo, .brand,
+      nav h1, header h1, header > div:first-child {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 75vw;
         font-size: 1rem !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        max-width: 90vw !important;
       }
     }
 
@@ -534,6 +572,24 @@
     <p>Packaging supplier: <a href="https://elipacko.com" rel="noopener">elipacko.com</a></p>
   </div>
 </footer>
+
+
+<script>
+(function(){
+  var btn = document.querySelector('.hamburger');
+  var menu = document.querySelector('.mobile-menu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e){
+      if(!btn.contains(e.target) && !menu.contains(e.target)){
+        menu.classList.remove('open');
+      }
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
