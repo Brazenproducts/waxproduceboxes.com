@@ -341,19 +341,22 @@
   @media(max-width:640px){.photo-strip{grid-template-columns:1fr;max-height:none}.photo-strip img{height:200px}}
 
 
+    
     /* ===== MOBILE OVERFLOW FIX ===== */
     body { overflow-x: hidden; }
     @media (max-width: 768px) {
       nav {
         padding: 0 16px !important;
-        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
       }
       .nav-logo, .nav-brand {
-        font-size: 0.95rem !important;
+        font-size: 1rem !important;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 55vw;
+        max-width: 70vw;
+        display: block;
       }
       .nav-links { display: none !important; }
     }
