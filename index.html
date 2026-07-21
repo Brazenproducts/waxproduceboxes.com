@@ -339,26 +339,38 @@
   .photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin:0;max-height:320px;overflow:hidden}
   .photo-strip img{width:100%;height:280px;object-fit:cover;display:block}
   @media(max-width:640px){.photo-strip{grid-template-columns:1fr;max-height:none}.photo-strip img{height:200px}}
-
-
-    
-    /* ===== MOBILE OVERFLOW FIX ===== */
-    body { overflow-x: hidden; }
+  
+    /* ===== MOBILE NAV FIX ===== */
+    html, body { overflow-x: hidden; max-width: 100%; }
     @media (max-width: 768px) {
-      nav {
+      /* All top-bar containers */
+      nav, header {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
         padding: 0 16px !important;
-        width: 100%;
-        box-sizing: border-box;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        min-height: 56px !important;
       }
-      .nav-logo, .nav-brand {
+      /* Logo / brand text — keep visible, truncate if needed */
+      nav h1, header h1,
+      .nav-logo, .nav-brand, .logo, .brand {
         font-size: 1rem !important;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 70vw;
-        display: block;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 65vw !important;
+        flex-shrink: 1 !important;
       }
-      .nav-links { display: none !important; }
+      /* Hide all nav link lists */
+      .nav-links, .nav-items { display: none !important; }
+      /* Hide inline CTA buttons in nav/header on mobile */
+      nav a.nav-cta, nav a.nav-quote,
+      header a.cta-btn, header a.cta,
+      header .nav a, header .cta,
+      nav .nav-cta { display: none !important; }
     }
 
   </style>
